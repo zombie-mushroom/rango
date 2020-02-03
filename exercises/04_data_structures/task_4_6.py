@@ -15,3 +15,12 @@ Outbound Interface:    FastEthernet0/0
 '''
 
 ospf_route = 'O        10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0'
+
+ospf_route = ospf_route.replace('O', 'OSPF')
+table = ospf_route.split()
+del table[3]
+table = [i.split(',')[0] for i in table]
+table = [i.strip('[]') for i in table]
+table_prfx = ['Protocol:', 'Prefix:', 'AD/Metric:', 'Next-Hop:', 'Last update:', 'Outbound Inteface:']
+for table_prfx, table in zip(table_prfx, table):
+    print('{:24}{:24}'.format(table_prfx, table))

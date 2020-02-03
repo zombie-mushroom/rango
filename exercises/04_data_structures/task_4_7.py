@@ -10,3 +10,6 @@
 '''
 
 mac = 'AAAA:BBBB:CCCC'
+mac = mac.split(':')
+mac = ''.join(mac)
+print(bin(int(mac, 16)))

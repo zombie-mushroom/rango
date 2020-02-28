@@ -19,3 +19,8 @@
 '''
 
 ip = '192.168.3.1'
+ip = ip.split('.')
+ip1, ip2, ip3, ip4 = (ip)
+print(f'''
+{ip1:10}{ip2:10}{ip3:10}{ip4:10}
+{int(ip1):<10b}{int(ip2):<10b}{int(ip3):<10b}{int(ip4):<10b}''')

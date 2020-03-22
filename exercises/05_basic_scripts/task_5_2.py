@@ -24,14 +24,19 @@ ip = input('Введите IP адрес: ')
 mask = input('Введите маску: ')
 ip_add = '{}/{}'.format(ip, mask)
 ip = ip.split('.')
-ip = ', '.join(ip)
+#ip = ', '.join(ip)
 mask_spl = '1'*int(mask) + '0'*(32-int(mask))
-print(type(ip))
 
-mask1 = int(mask_spl[:8])
-mask2 = int(mask_spl[9:16])
-mask3 = int(mask_spl[17:24])
-mask4 = int(mask_spl[25:])
+ip1 = int(ip[0])
+ip2 = int(ip[1])
+ip3 = int(ip[2])
+ip4 = int(ip[3])
+
+mask1 = int(mask_spl[:8], 2)
+mask2 = int(mask_spl[8:16], 2)
+mask3 = int(mask_spl[16:24], 2)
+mask4 = int(mask_spl[24:], 2)
+
 
 ip_template = '''
 Network:
@@ -39,9 +44,9 @@ Network:
 {0:08b} {1:08b} {2:08b} {3:08b}
 
 Mask:
-'/' mask
-int(mask1, 2) int(mask2, 2) int(mask3, 2) int(mask4, 2)
-mask1 mask2 mask3 mask4
+'/'{8:}
+{4:<8} {5:<8} {6:<8} {7:<8}
+{4:<08b} {5:<08b} {6:<08b} {7:<08b}
 '''
 
-print(ip_template.format(ip))
+print(ip_template.format(ip1, ip2, ip3, ip4, mask1, mask2, mask3, mask4, mask))
